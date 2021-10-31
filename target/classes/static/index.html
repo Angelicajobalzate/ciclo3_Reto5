@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>RenCar</title>
+        <meta name="viewport" content="width=device-width"/>
+        <base href="/"/>
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body>
+
+        <div class="container unauthenticated">
+            With GitHub: <a href="/oauth2/authorization/github">click here</a>
+        </div>
+        <div class="container authenticated" style="display:none">
+            Logged in as: <span id="user"></span>
+
+            <h1>Car Registration</h1>
+
+            <input type="number" id="idCar" placeholder="id">
+        <input type="text" id="brand" placeholder="brand">
+        <input type="number" id="model" placeholder="model">
+        <input type="number" id="category_id" placeholder="category_id">
+
+
+            <button onclick="registro()">ok</button>
+
+            <button onclick="obtenerItems()">VER</button>
+
+            <button onclick="actualizar()">Editar</button>
+
+            <div>
+
+                <table>
+                    <tbody id="miResultado">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </body>
+
+    <script type="text/javascript">
+        $.get("/user", function (data) {
+            $("#user").html(data.name);
+            $(".unauthenticated").hide()
+            $(".authenticated").show()
+        });
+    </script>
+
+</html>
